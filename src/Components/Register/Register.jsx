@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import auth from "../../Firebase/firebase.config";
 const Register = () => {
     const { createUser } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -36,17 +37,13 @@ const Register = () => {
                   Swal.fire({
                       icon: 'success',
                       title: 'User Created Successfully',
-                      text: 'Happy Journey',
-                      
+                      text: 'Happy Journey',      
                     })
               })
               .catch(error => {
                   console.log(error);
                  
           })
-
-
-          
           navigate(location?.state ? location.state : '/' )
 
   })

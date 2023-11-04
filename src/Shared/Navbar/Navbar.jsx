@@ -1,12 +1,27 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
-
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-
-  
-
-
+  const { user, logOut } = useAuth();
+  console.log(user);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Logout Successful",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: `${error.message}`,
+          text: "Something went wrong!",
+        });
+      });
+  };
 
   const activeLinkStyle = ({ isActive, isPending }) =>
     isPending
@@ -70,12 +85,35 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItem}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={"/login"} className="btn">
-          Login
-        </Link>
+        {user?.email ? (
+          <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
+          </label>
+          <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+            
+            <li><a>{user.displayName}</a></li>
+            <button onClick={handleLogOut} className="btn">
+            Logout
+          </button>
+          </ul>
+    </div>
+        ) : (
+          <Link to={"/login"} className="btn">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
 };
 
 export default Navbar;
+
+
+    
+
+
+   

@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Login = () => {
-    const {signIn} = useAuth()
+    const { signIn } = useAuth()
+    const location = useLocation()
     const navigate = useNavigate()
  
 
@@ -22,9 +23,7 @@ const Login = () => {
             navigate(location?.state ? location.state : '/' )
             Swal.fire({
                 icon: 'success',
-                title: 'Login Successful',
-                
-                
+                title: 'Login Successful',     
               })
 
     })

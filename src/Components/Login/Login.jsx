@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
+    const {signIn} = useAuth()
+    const navigate = useNavigate()
+ 
 
     const handleLogin = e => {
         e.preventDefault()
@@ -8,6 +13,30 @@ const Login = () => {
         const email = form.get('email')
         const password = form.get('password')
         console.log(email, password);
+
+        signIn(email, password)
+
+        .then(result => {
+            console.log(result.user);
+
+            navigate(location?.state ? location.state : '/' )
+            Swal.fire({
+                icon: 'success',
+                title: 'Login Successful',
+                
+                
+              })
+
+    })
+        .catch(error => {
+            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: `${error.message}`,
+                text: 'Something went wrong!',
+              })
+    })
+    
     }
   return (
     <div className="  max-w-7xl mx-auto">

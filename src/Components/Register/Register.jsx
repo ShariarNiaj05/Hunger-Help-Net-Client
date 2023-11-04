@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
+import auth from "../../Firebase/firebase.config";
 
 const Register = () => {
+    const { createUser } = useAuth()
+    const navigate = useNavigate()
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -16,6 +22,42 @@ const Register = () => {
       photo,
       };
       console.log(newUser);
+
+      createUser(email, password)
+      .then(result => {
+          console.log(result.user);
+
+          updateProfile(auth.currentUser, {
+              displayName: name,
+              photoURL: photo
+          })
+              .then(() => {
+                  console.log('profile Updated');
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'User Created Successfully',
+                      text: 'Happy Journey',
+                      
+                    })
+              })
+              .catch(error => {
+                  console.log(error);
+                 
+          })
+
+
+          
+          navigate(location?.state ? location.state : '/' )
+
+  })
+      .catch(error => {
+          console.log(error);
+          Swal.fire({
+              icon: 'error',
+              title: `${error.message}`,
+              text: 'Something went wrong!',
+            })
+  })
   };
   return (
     <div className="  max-w-7xl mx-auto">

@@ -1,7 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
 
+
 const Navbar = () => {
+
+  
+
+
+
   const activeLinkStyle = ({ isActive, isPending }) =>
     isPending
       ? "pending"

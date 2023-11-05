@@ -7,7 +7,7 @@ const AvailableFoods = () => {
     const axios = useAxiosSecure()
 
     const { data, isLoading, isError, error } = useQuery({
-        queryKey: ["allFoods"],
+        queryKey: ["availableFoods"],
         queryFn: async () => {
           const allFoods = await axios.get(`/foods`);
           return allFoods;

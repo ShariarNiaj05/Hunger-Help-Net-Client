@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const FeaturedFoodCard = ({ food }) => {
-  const {
+    const {
+      _id,
     foodImage,
     foodName,
     donatorImage,
@@ -31,7 +34,7 @@ const FeaturedFoodCard = ({ food }) => {
             </div>
             <button className="btn">{donatorName}</button>
           </div>
-          <button className="btn btn-active btn-primary">View Details</button>
+          <Link to={`/food-details/${_id}`}><button className="btn btn-active btn-primary">View Details</button></Link>
         </div>
           </div>
           

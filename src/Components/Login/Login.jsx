@@ -1,42 +1,47 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
-    const { signIn } = useAuth()
-    const location = useLocation()
-    const navigate = useNavigate()
- 
+  const { signIn } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const axios = useAxiosSecure();
 
-    const handleLogin = e => {
-        e.preventDefault()
-        const form = new FormData(e.currentTarget)
-        const email = form.get('email')
-        const password = form.get('password')
-        console.log(email, password);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
 
-        signIn(email, password)
-
-        .then(result => {
-            console.log(result.user);
-
-            navigate(location?.state ? location.state : '/' )
+    signIn(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = { email };
+        axios.post("/access-token", user).then((res) => {
+          console.log(res.data);
+          if (res.data?.success) {
+            navigate(location?.state ? location.state : "/");
             Swal.fire({
-                icon: 'success',
-                title: 'Login Successful',     
-              })
-
-    })
-        .catch(error => {
-            console.log(error);
-            Swal.fire({
-                icon: 'error',
-                title: `${error.message}`,
-                text: 'Something went wrong!',
-              })
-    })
-    
-    }
+              icon: "success",
+              title: "Login Successful",
+            });
+          }
+        });
+      })
+      
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: `${error.message}`,
+          text: "Something went wrong!",
+        });
+      });
+  };
   return (
     <div className="  max-w-7xl mx-auto">
       <section>
@@ -76,8 +81,8 @@ const Login = () => {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Sign in to HUNGER HELP NET
               </h2>
-                          <form onSubmit={handleLogin} className="mt-8 space-y-6" >
-                    {/*       <div>
+              <form onSubmit={handleLogin} className="mt-8 space-y-6">
+                {/*       <div>
                   <label
                     htmlFor="name"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -144,7 +149,6 @@ const Login = () => {
                       Remember this device
                     </label>
                   </div>
-                  
                 </div>
                 <button
                   type="submit"
@@ -154,7 +158,10 @@ const Login = () => {
                 </button>
                 <div className="text-sm font-medium text-gray-900 dark:text-white">
                   Not registered yet?{" "}
-                  <Link to={'/register'} className="text-blue-600 hover:underline dark:text-blue-500">
+                  <Link
+                    to={"/register"}
+                    className="text-blue-600 hover:underline dark:text-blue-500"
+                  >
                     Register
                   </Link>
                 </div>

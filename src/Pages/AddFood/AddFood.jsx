@@ -10,14 +10,14 @@ const AddFood = () => {
     const form = new FormData(e.currentTarget);
     const foodName = form.get("foodName") || 'No Data Provided';
     const foodImage = form.get("foodImage") || 'No Data Provided';
-    const foodQuantity = form.get("foodQuantity") || 'No Data Provided';
+    const foodQuantity = parseInt(form.get("foodQuantity")) || 'No Data Provided';
     const pickupLocation = form.get("pickupLocation") || 'No Data Provided';
-    const expirationTime = form.get("expirationTime") || 'No Data Provided';
+    const expirationTime = parseInt(form.get("expirationTime")) || 'No Data Provided';
     const additionalNotes = form.get("additionalNotes") || 'No Data Provided';
     const foodStatus = form.get("foodStatus") || 'No Data Provided';
         
     const donatorName = user?.displayName || 'No Data Provided';
-    const donatorEmail = user?.email || 'No Data Provided';
+    const email = user?.email || 'No Data Provided';
     const donatorImage = user?.photoURL || 'No Data Provided';
         
     const newFood = {
@@ -29,7 +29,7 @@ const AddFood = () => {
         additionalNotes,
         foodStatus,
         donatorName,
-        donatorEmail,
+        email,
         donatorImage
         };
         console.log(newFood);
@@ -184,16 +184,16 @@ const AddFood = () => {
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
-                <label htmlFor="donatorEmail" className="text-sm">
+                <label htmlFor="email" className="text-sm">
                   Email
                 </label>
                 <input
-                  id="donatorEmail"
+                  id="email"
                   type="text"
                                   placeholder="Donator Email"
                                   defaultValue={user?.email}
                                   readOnly
-                                  name="donatorEmail"
+                                  name="email"
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>

@@ -32,7 +32,7 @@ const ManageMyFoods = () => {
   const axios = useAxiosSecure();
   const { user } = useAuth();
   const { data, isLoading, isError, error, isFetching, refetch } = useQuery({
-    queryKey: ["manageFoods"],
+    queryKey: ["manage-foods"],
     queryFn: async () => {
       const myFood = await axios.get(`/get-food?queryEmail=${user?.email}`);
       return myFood;
@@ -45,7 +45,11 @@ const ManageMyFoods = () => {
     console.log(error);
     return <p>{error}</p>;
   }
-  console.log(data);
+
+  if (isFetching) {
+    return <Loading></Loading>;
+  }
+  // console.log(myFood);
 
 //   const food = data.data;
 //   const tableData = useMemo(() => food, [food]);

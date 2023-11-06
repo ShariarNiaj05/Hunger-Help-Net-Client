@@ -1,8 +1,12 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ManageMyFoodsTableRow = ({ food, refetch }) => {
+
+  const navigate = useNavigate()
+
+
   const {
     _id,
     foodName,
@@ -95,7 +99,7 @@ const ManageMyFoodsTableRow = ({ food, refetch }) => {
       <td>{pickupLocation}</td>
       <th>
         <Link to={`/manage/${_id}`}><button className="btn btn-ghost btn-xs">Manage</button></Link>
-        <button className="btn btn-ghost btn-xs">Edit</button>
+        <button onClick={()=>navigate(`/manage-my-foods/${_id}`)} className="btn btn-ghost btn-xs">Edit</button>
         <button onClick={()=>handleDelete(_id)} className="btn btn-ghost btn-xs">Delete</button>
       </th>
     </tr>

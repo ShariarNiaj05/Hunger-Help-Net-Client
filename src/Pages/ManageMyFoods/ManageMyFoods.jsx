@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Loading from "../../Shared/Loading/Loading";
-import ManageMyFoodsTable from "./ManageMyFoodsTable";
+import ManageMyFoodsTableRow from "./ManageMyFoodsTableRow";
+// import ManageMyFoodsTable from "./ManageMyFoodsTable";
 // import React, { useMemo } from "react";
 // import {
     
@@ -88,10 +89,32 @@ const ManageMyFoods = () => {
       </table> */}
           
 
-
-          {
-             data?.data.map(food => <ManageMyFoodsTable key={food._id} food={food}></ManageMyFoodsTable>) 
+          <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>
+                <label>
+                  <input type="checkbox" className="checkbox" />
+                </label>
+              </th>
+              <th>Name</th>
+              <th>Job</th>
+              <th>Favorite Color</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {
+             data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food}></ManageMyFoodsTableRow>) 
           }
+          </tbody>
+        </table>
+      </div>
+
+          
     </div>
   );
 };

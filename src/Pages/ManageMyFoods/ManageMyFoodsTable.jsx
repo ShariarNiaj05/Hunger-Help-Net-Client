@@ -1,18 +1,38 @@
 // import { useReactTable } from '@tanstack/react-table'
 // import {useTable} from 'react-table'
 
-const ManageMyFoodsTable = ({ food }) => {
-
-    const {donatorName, expirationTime, pickupLocation} = food
-    console.log(food);
-    return (
-        <div>
-            <p>{donatorName }</p>
-            <p>{expirationTime }</p>
-            <p>{pickupLocation }</p>
+const ManageMyFoodsTable = () => {
+  
+ 
+  return (
+    <div>
+          {
+              
+         /*      <div className="overflow-x-auto">
+        <table className="table">
+         
+          <thead>
+            <tr>
+              <th>
+                <label>
+                  <input type="checkbox" className="checkbox" />
+                </label>
+              </th>
+              <th>Name</th>
+              <th>Job</th>
+              <th>Favorite Color</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
             
-        </div>
-    );
+          </tbody>
+        </table>
+          </div> */
+          
+          }
+    </div>
+  );
 };
 
 export default ManageMyFoodsTable;

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Loading from "../../Shared/Loading/Loading";
+import AvailableFoodsCard from "./AvailableFoodsCard";
 
 const AvailableFoods = () => {
 
@@ -20,15 +21,33 @@ const AvailableFoods = () => {
       if (isError) {
         console.log(error);
         return <p>{error}</p>;
-      }
-    console.log(data?.data);
+  }
+  
+  const AvailableFoods = data?.data
+
+  console.log(AvailableFoods);
+  
+//   const {
+//     _id,
+//   foodImage,
+//   foodName,
+//   donatorImage,
+//   donatorName,
+//   foodQuantity,
+//   pickupLocation,
+//   expirationTime,
+//   additionalNotes,
+// } = AvailableFoods
 
 
     return (
-        <div>
-            
-            AvailableFoods
-        </div>
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
+      
+        {
+          AvailableFoods.map(singleFood => <AvailableFoodsCard key={singleFood._id} singleFood={singleFood}></AvailableFoodsCard>)
+        }
+          
+    </div>
     );
 };
 

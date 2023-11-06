@@ -15,7 +15,7 @@ const FeaturedFoodDetails = () => {
     expirationTime,
     additionalNotes,
     donatorName,
-    donatorEmail,
+    email,
     donatorImage,
     foodStatus,
   } = foodDetails;
@@ -26,7 +26,7 @@ const FeaturedFoodDetails = () => {
     const foodName = form.get("foodName") || 'No Data Provided';
     const foodImage = form.get("foodImage") || 'No Data Provided';
     const foodId = form.get("foodId") || 'No Data Provided';
-    const donatorEmail = form.get("donatorEmail") || 'No Data Provided';
+    const email = form.get("email") || 'No Data Provided';
     const donatorName = form.get("donatorName") || 'No Data Provided';
     const foodQuantity = parseInt(form.get("foodQuantity")) || 'No Data Provided';
     const pickupLocation = form.get("pickupLocation") || 'No Data Provided';
@@ -41,7 +41,7 @@ const FeaturedFoodDetails = () => {
           foodName,
           foodImage,
           foodId,
-          donatorEmail,
+          email,
           donatorName,
           foodQuantity,
           pickupLocation,
@@ -151,8 +151,8 @@ const FeaturedFoodDetails = () => {
                         </label>
                         <input
                           type="text"
-                          defaultValue={donatorEmail}
-                          name="donatorEmail"
+                          defaultValue={email}
+                          name="email"
                           readOnly
                           className="input input-bordered"
                           required

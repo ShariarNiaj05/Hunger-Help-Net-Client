@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
 
@@ -33,7 +34,7 @@ const AddFood = () => {
         additionalNotes,
         foodStatus,
         donatorName,
-        donatorEmail,
+        email: donatorEmail,
         donatorImage
       };
       
@@ -42,8 +43,12 @@ const AddFood = () => {
       
       axios.post('/add-food', newFood)
         .then(res => {
-        console.log(res.data);
+          console.log(res.data);
+          if (res?.data.insertedId) {
+            Swal.fire("Success", "Food Added Successfully", "success");
+          }
       })
+
 
 
      
@@ -106,7 +111,7 @@ const AddFood = () => {
                 </label>
                 <input
                   id="foodQuantity"
-                                  type="text"
+                                  type="number"
                                   name="foodQuantity"
                   placeholder="Food Quantity  (No. of person to be served)"
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -130,7 +135,7 @@ const AddFood = () => {
                 </label>
                 <input
                   id="expirationTime"
-                  type="text"
+                  type="number"
                                   placeholder="Expiration Time"
                                   name="expirationTime"
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
@@ -157,20 +162,25 @@ const AddFood = () => {
                   id="foodStatus"
                   type="text"
                   placeholder="Food Status"
+                  defaultValue={"available"}
+                  readOnly
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div> */}
+
+
               <div className="col-span-full sm:col-span-2 ">
                 <label htmlFor="foodStatus" className="text-sm">
                   Food Status
                 </label>
                 <select
                                   defaultValue={"available"}
-                                  name="foodStatus"
+                  name="foodStatus"
+                  readOnly
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 >
                   <option value={"available"}>Available</option>
-                  <option value={"unavailable"}>Unavailable</option>
+                  {/* <option value={"delivered"}>Delivered</option> */}
                   {/* <option>Marge</option> */}
                 </select>
               </div>

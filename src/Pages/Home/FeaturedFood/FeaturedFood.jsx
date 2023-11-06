@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loading from "../../../Shared/Loading/Loading";
@@ -14,6 +15,10 @@ const FeaturedFood = () => {
       return allFoods;
     },
   });
+
+  
+
+
 
   if (isLoading) {
     return <Loading></Loading>;

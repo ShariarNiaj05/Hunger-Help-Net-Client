@@ -1,9 +1,13 @@
+import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useState } from "react";
 
 const AddFood = () => {
 
-
-    const {user} = useAuth()
+  // const [food, setFood] = useState({})
+  const { user } = useAuth()
+  const axios = useAxiosSecure()
 
     const handleNewFood = e => {
         e.preventDefault();
@@ -31,10 +35,31 @@ const AddFood = () => {
         donatorName,
         email,
         donatorImage
-        };
-        console.log(newFood);
+      };
+      
+      // setFood(newFood)
+      
+      
+      axios.post('/add-food', newFood)
+        .then(res => {
+        console.log(res.data);
+      })
 
-    }
+
+     
+  }
+
+
+  // const {mutate} = useMutation({
+  //   mutationKey: ['allFoods'],
+  //   mutationFn: async ({food}) => {
+  //     return axios.post('/add-food', food)
+  //   }
+  // })
+
+  // console.log(food);
+  
+
   return (
     <div className=" max-w-7xl mx-auto mb-20">
       <section className="p-6 dark:bg-gray-800 dark:text-gray-50  ">
@@ -222,6 +247,7 @@ const AddFood = () => {
                   />
                 </div>
                 <button
+                  // onClick={()=> mutate(food)}
                   type="submit"
                   className="px-4 py-2 mt-3 border rounded-md dark:border-gray-100"
                 >

@@ -49,7 +49,7 @@ const FeaturedFoodDetails = () => {
           email,
       }
 
-      console.log(newRequest);
+      // console.log(newRequest);
   };
 
   const today = new Date();

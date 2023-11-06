@@ -21,7 +21,7 @@ const AddFood = () => {
     const foodStatus = form.get("foodStatus") || 'No Data Provided';
         
     const donatorName = user?.displayName || 'No Data Provided';
-    const email = user?.email || 'No Data Provided';
+    const donatorEmail = user?.email || 'No Data Provided';
     const donatorImage = user?.photoURL || 'No Data Provided';
         
     const newFood = {
@@ -33,7 +33,7 @@ const AddFood = () => {
         additionalNotes,
         foodStatus,
         donatorName,
-        email,
+        donatorEmail,
         donatorImage
       };
       
@@ -209,16 +209,16 @@ const AddFood = () => {
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
-                <label htmlFor="email" className="text-sm">
+                <label htmlFor="donatorEmail" className="text-sm">
                   Email
                 </label>
                 <input
-                  id="email"
+                  id="donatorEmail"
                   type="text"
                                   placeholder="Donator Email"
                                   defaultValue={user?.email}
                                   readOnly
-                                  name="email"
+                                  name="donatorEmail"
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>

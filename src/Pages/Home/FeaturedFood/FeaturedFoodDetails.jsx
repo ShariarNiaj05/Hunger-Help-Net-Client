@@ -33,6 +33,7 @@ const FeaturedFoodDetails = () => {
     const expirationTime = parseInt(form.get("expirationTime")) || 'No Data Provided';
     const additionalNotes = form.get("additionalNotes") || 'No Data Provided';
     const requestDate = form.get("requestDate") || 'No Data Provided';
+    const foodStatus = form.get("foodStatus,") || 'No Data Provided';
     
       const requesterEmail = user?.email || 'No Data Provided';
       
@@ -47,7 +48,8 @@ const FeaturedFoodDetails = () => {
           expirationTime,
           additionalNotes,
           requestDate,
-          requesterEmail,
+        requesterEmail,
+        foodStatus,
       }
 
     // console.log(newRequest);
@@ -193,7 +195,7 @@ const FeaturedFoodDetails = () => {
                           type="date"
                           defaultValue={today}
                           name="requestDate"
-                          readOnly
+                          // readOnly
                           className="input input-bordered"
                           required
                         />
@@ -248,7 +250,22 @@ const FeaturedFoodDetails = () => {
                           type="text"
                           placeholder="enter amount you want to donate"
                           className="input input-bordered"
-                          required
+                          
+                        />
+                      </div>
+
+
+
+                      <div className="form-control">
+                        <label className="label">
+                          <span className="label-text"> Food Status</span>
+                        </label>
+                        <input
+                          type="text"
+                          defaultValue={foodStatus}
+                          name="foodStatus,"
+                          className="input input-bordered"
+                          readOnly
                         />
                       </div>
                       <div className="form-control mt-6">

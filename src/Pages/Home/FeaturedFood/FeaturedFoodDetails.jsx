@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const FeaturedFoodDetails = () => {
   const foodDetails = useLoaderData();
@@ -33,7 +34,7 @@ const FeaturedFoodDetails = () => {
     const additionalNotes = form.get("additionalNotes") || 'No Data Provided';
     const requestDate = form.get("requestDate") || 'No Data Provided';
     
-      const email = user?.email || 'No Data Provided';
+      const requesterEmail = user?.email || 'No Data Provided';
       
       const newRequest = {
           foodName,
@@ -46,15 +47,32 @@ const FeaturedFoodDetails = () => {
           expirationTime,
           additionalNotes,
           requestDate,
-          email,
+          requesterEmail,
       }
 
-      // console.log(newRequest);
+    // console.log(newRequest);
+
+    fetch(`http://localhost:5000/request-food`, {
+      method: "POST",
+      headers: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify(newRequest)
+    })
+    .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.insertedId) { 
+          Swal.fire("Success", "Added  Successfully", "success");
+      }
+    })
+    
+
   };
 
   const today = new Date();
 
-//   console.log(today);
+  console.log(today);
   return (
     <div className=" max-w-5xl mx-auto gap-10 flex flex-col">
       <div>

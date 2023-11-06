@@ -1,4 +1,24 @@
-const ManageMyFoodsTableRow = ({food}) => {
+import { Link } from "react-router-dom";
+
+const ManageMyFoodsTableRow = ({ food, refetch }) => {
+  const {
+    _id,
+    foodName,
+    foodImage,
+    foodQuantity,
+    pickupLocation,
+    expirationTime,
+    additionalNotes,
+    foodStatus,
+    donatorName,
+    requesterEmail,
+    donatorImage,
+  } = food;
+
+    
+    const handleDelete = _id => {
+        console.log(_id);
+    }
   return (
     <tr>
       <th>
@@ -17,18 +37,22 @@ const ManageMyFoodsTableRow = ({food}) => {
             </div>
           </div>
           <div>
-            <div className="font-bold">{food.donatorName}</div>
+            <div className="font-bold">{donatorName}</div>
           </div>
         </div>
       </td>
       <td>
-        {food.expirationTime}
+        {expirationTime}
         <br />
-        <span className="badge badge-ghost badge-sm">{food.pickupLocation}</span>
+        <span className="badge badge-ghost badge-sm">
+          {pickupLocation}
+        </span>
       </td>
-      <td>{food.pickupLocation}</td>
+      <td>{pickupLocation}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        <Link to={`/manage/${_id}`}><button className="btn btn-ghost btn-xs">Manage</button></Link>
+        <button className="btn btn-ghost btn-xs">Edit</button>
+        <button onClick={()=>handleDelete(_id)} className="btn btn-ghost btn-xs">Delete</button>
       </th>
     </tr>
   );

@@ -31,10 +31,10 @@ import ManageMyFoodsTableRow from "./ManageMyFoodsTableRow";
 const ManageMyFoods = () => {
   const axios = useAxiosSecure();
   const { user } = useAuth();
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, isFetching, refetch } = useQuery({
     queryKey: ["manageFoods"],
     queryFn: async () => {
-      const myFood = await axios.get(`/get-food?email=${user?.email}`);
+      const myFood = await axios.get(`/get-food?queryEmail=${user?.email}`);
       return myFood;
     },
   });
@@ -45,7 +45,7 @@ const ManageMyFoods = () => {
     console.log(error);
     return <p>{error}</p>;
   }
-  console.log(data?.data);
+  console.log(data);
 
 //   const food = data.data;
 //   const tableData = useMemo(() => food, [food]);
@@ -108,7 +108,7 @@ const ManageMyFoods = () => {
           <tbody>
             {/* row 1 */}
             {
-             data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food}></ManageMyFoodsTableRow>) 
+             data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch}></ManageMyFoodsTableRow>) 
           }
           </tbody>
         </table>

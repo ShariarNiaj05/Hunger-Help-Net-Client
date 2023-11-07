@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const AvailableFoodsCard = ({ singleFood }) => {
+const AvailableFoodsCard = ({ singleFood, refetch }) => {
     
     const {  _id,
           foodImage,
@@ -13,7 +13,8 @@ const AvailableFoodsCard = ({ singleFood }) => {
           additionalNotes,
     } = singleFood || {}
     return (
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+      <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+       
       <figure>
         <img src={foodImage} alt="Shoes" />
       </figure>
@@ -25,7 +26,7 @@ const AvailableFoodsCard = ({ singleFood }) => {
         <p>{additionalNotes}</p>
         <div className="card-actions justify-end">
           <div className="badge badge-outline">{pickupLocation}</div>
-          <div className="badge badge-outline">{expirationTime}</div>
+          <div className="badge badge-outline">Expiration Time: {expirationTime}</div>
         </div>
         <div>
           <div className="avatar">

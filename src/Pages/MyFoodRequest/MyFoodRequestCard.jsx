@@ -19,6 +19,7 @@ const MyFoodRequestCard = ({
     additionalNotes,
     requestDate,
     requesterEmail,
+    donationAmount,
     foodStatus,
   } = mySingleFood;
 
@@ -61,6 +62,7 @@ const MyFoodRequestCard = ({
         <p>Pickup Location: {pickupLocation}</p>
         <p>Expire Date: {expirationTime}</p>
         <p>Request Date: {requestDate}</p>
+        <p>Donation Amount: {donationAmount}</p>
         <p>Status: {foodStatus} </p>
 
         <div className="card-actions justify-end">

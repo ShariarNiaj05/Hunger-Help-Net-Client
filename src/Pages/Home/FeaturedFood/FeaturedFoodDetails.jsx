@@ -1,9 +1,11 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 
 const FeaturedFoodDetails = () => {
   const foodDetails = useLoaderData();
+  const [currentDate, setCurrentDate] = useState('');
   const { user } = useAuth();
 
   const {
@@ -19,6 +21,12 @@ const FeaturedFoodDetails = () => {
     donatorImage,
     foodStatus,
   } = foodDetails;
+
+
+  useEffect(() => {
+    const currentDate = new Date();
+    setCurrentDate(currentDate.toISOString().split('T')[0]);
+  }, []);
 
   const handleFoodRequest = (e) => {
     e.preventDefault();
@@ -80,9 +88,9 @@ const FeaturedFoodDetails = () => {
 
   };
 
-  const today = new Date();
+  // const today = new Date();
 
-  console.log(today);
+  // console.log(today);
   return (
     <div className=" max-w-5xl mx-auto gap-10 flex flex-col">
       <div>
@@ -214,9 +222,9 @@ const FeaturedFoodDetails = () => {
                         </label>
                         <input
                           type="date"
-                          defaultValue={today}
+                          defaultValue={currentDate}
                           name="requestDate"
-                          // readOnly
+                          readOnly
                           className="input input-bordered"
                           required
                         />

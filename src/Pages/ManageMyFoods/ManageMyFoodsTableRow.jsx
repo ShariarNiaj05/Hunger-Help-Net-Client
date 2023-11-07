@@ -85,7 +85,7 @@ const ManageMyFoodsTableRow = ({ food, refetch }) => {
             </div>
           </div>
           <div>
-            <div className="font-bold">{donatorName}</div>
+            <div className="font-bold">Food name: {foodName}</div>
           </div>
         </div>
       </td>

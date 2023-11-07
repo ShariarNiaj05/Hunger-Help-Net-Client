@@ -36,6 +36,8 @@ const FeaturedFoodDetails = () => {
     const foodStatus = form.get("foodStatus,") || 'No Data Provided';
     
       const requesterEmail = user?.email || 'No Data Provided';
+      const requesterName = user?.displayName || 'No Data Provided';
+      const requesterImage = user?.photoURL || 'No Data Provided';
       
       const newRequest = {
           foodName,
@@ -49,7 +51,10 @@ const FeaturedFoodDetails = () => {
           additionalNotes,
           requestDate,
         requesterEmail,
+        requesterName,
+        requesterImage,
         foodStatus,
+
       }
 
     // console.log(newRequest);
@@ -125,6 +130,19 @@ const FeaturedFoodDetails = () => {
                           type="text"
                           defaultValue={foodImage}
                           name="foodImage"
+                          readOnly
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      <div className="form-control">
+                        <label className="label">
+                          <span className="label-text">Food Quantity</span>
+                        </label>
+                        <input
+                          type="text"
+                          defaultValue={foodQuantity}
+                          name="foodQuantity"
                           readOnly
                           className="input input-bordered"
                           required
@@ -223,6 +241,32 @@ const FeaturedFoodDetails = () => {
                           type="text"
                           defaultValue={expirationTime}
                           name="expirationTime"
+                          readOnly
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      <div className="form-control">
+                        <label className="label">
+                          <span className="label-text">Requester Name</span>
+                        </label>
+                        <input
+                          type="text"
+                          defaultValue={user?.displayName}
+                          name="Requester Name"
+                          readOnly
+                          className="input input-bordered"
+                          required
+                        />
+                      </div>
+                      <div className="form-control">
+                        <label className="label">
+                          <span className="label-text">Requester Image</span>
+                        </label>
+                        <input
+                          type="text"
+                          defaultValue={user?.photoURL}
+                          name="Requester Name"
                           readOnly
                           className="input input-bordered"
                           required

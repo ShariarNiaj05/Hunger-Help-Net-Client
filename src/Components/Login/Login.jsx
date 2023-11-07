@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -138,7 +139,7 @@ const Login = () => {
                       name="remember"
                       type="checkbox"
                       className="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600"
-                      required
+                      
                     />
                   </div>
                   <div className="ml-3 text-sm">
@@ -156,6 +157,9 @@ const Login = () => {
                 >
                   Login to your account
                 </button>
+                <div>
+                  <SocialLogin></SocialLogin>
+                </div>
                 <div className="text-sm font-medium text-gray-900 dark:text-white">
                   Not registered yet?{" "}
                   <Link

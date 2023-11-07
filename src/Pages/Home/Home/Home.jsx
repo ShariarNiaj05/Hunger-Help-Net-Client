@@ -1,3 +1,4 @@
+import TestTable from "../../ManageMyFoods/TestTable";
 import Banner from "../Banner/Banner";
 import FeaturedFood from "../FeaturedFood/FeaturedFood";
 import HowWeWork from "../HowWeWork/HowWeWork";
@@ -12,6 +13,7 @@ const Home = () => {
       <WhyChooseUs></WhyChooseUs>
       <HowWeWork></HowWeWork>
       <HowYouCanHelp></HowYouCanHelp>
+      {/* <TestTable></TestTable> */}
     </div>
   );
 };

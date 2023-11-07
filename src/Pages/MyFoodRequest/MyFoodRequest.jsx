@@ -10,7 +10,7 @@ const MyFoodRequest = () => {
 
   useEffect(() => {
     axios.get(`/my-food-request?queryEmail=${user?.email}`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setMyFoodRequest(res?.data);
     });
   }, [axios, user?.email]);

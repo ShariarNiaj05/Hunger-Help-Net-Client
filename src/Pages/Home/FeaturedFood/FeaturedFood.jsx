@@ -1,9 +1,9 @@
-
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loading from "../../../Shared/Loading/Loading";
 import FeaturedFoodCard from "./FeaturedFoodCard";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const FeaturedFood = () => {
   const axios = useAxiosSecure();
@@ -16,8 +16,6 @@ const FeaturedFood = () => {
     },
   });
 
-
-
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -26,26 +24,32 @@ const FeaturedFood = () => {
     return <p>{error}</p>;
   }
 
-
- 
-
-
   const sortedFood = data.data.sort((a, b) => b.foodQuantity - a.foodQuantity);
   const slicedFood = sortedFood.slice(0, 6);
-  console.log(sortedFood);
+  // console.log(sortedFood);
 
+  const canRequestFood = sortedFood.filter(
+    (item) => item.foodStatus === "available"
+  );
 
-   const canRequestFood = sortedFood.filter(item => item.foodStatus === 'available')
+  // console.log(canRequestFood);
 
-  console.log(canRequestFood);
-  
   return (
-    <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
-      {canRequestFood.map((food) => (
-        <FeaturedFoodCard key={food._id} food={food}></FeaturedFoodCard>
-      ))}
-<Link to={'/available-foods'}><button className="btn btn-active btn-accent">View All</button></Link>
+    <div>
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
+        {canRequestFood.map((food) => (
+          <FeaturedFoodCard key={food._id} food={food}></FeaturedFoodCard>
+        ))}
       </div>
+      <Link to={"/available-foods"}>
+        <motion.button
+          className="btn btn-active btn-accent"
+          animate={{ scale:1.5 }}
+        >
+          View All
+        </motion.button>
+      </Link>
+    </div>
   );
 };
 

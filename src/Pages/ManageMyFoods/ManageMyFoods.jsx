@@ -3,6 +3,8 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import Loading from "../../Shared/Loading/Loading";
 import ManageMyFoodsTableRow from "./ManageMyFoodsTableRow";
+import TestTable from "./TestTable";
+
 // import ManageMyFoodsTable from "./ManageMyFoodsTable";
 // import React, { useMemo } from "react";
 // import {
@@ -60,7 +62,9 @@ const ManageMyFoods = () => {
 //     tableData,
 //     columns,
 //     getCoreRowModel: getCoreRowModel(),
-//   });
+  //   });
+  
+  const testTableData = data?.data 
 
   return (
     <div>
@@ -112,10 +116,24 @@ const ManageMyFoods = () => {
           <tbody>
             {/* row 1 */}
             {
-             data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch}></ManageMyFoodsTableRow>) 
+             data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch} testTableData={testTableData}></ManageMyFoodsTableRow>) 
           }
           </tbody>
         </table>
+
+
+        <p>demo table implementing</p>
+
+        {
+          
+
+          // data?.data.map(food => <TestTable key={food._id} food={food} refetch={refetch}></TestTable>)
+          // <TestTable testTableData={testTableData} refetch={refetch}></TestTable>
+        
+        
+        }
+
+       
       </div>
 
           

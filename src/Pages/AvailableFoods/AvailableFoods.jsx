@@ -39,12 +39,17 @@ const AvailableFoods = () => {
 //   additionalNotes,
 // } = AvailableFoods
 
+  const canRequestFood = AvailableFoods.filter(item => item.foodStatus === 'available')
+
+  // console.log(canRequestFood);
+  
 
     return (
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
+        
       
         {
-          AvailableFoods.map(singleFood => <AvailableFoodsCard key={singleFood._id} singleFood={singleFood}></AvailableFoodsCard>)
+          canRequestFood.map(singleFood => <AvailableFoodsCard key={singleFood._id} singleFood={singleFood}></AvailableFoodsCard>)
         }
           
     </div>

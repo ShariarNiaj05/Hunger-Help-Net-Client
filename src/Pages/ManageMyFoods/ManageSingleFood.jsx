@@ -50,9 +50,39 @@ const ManageSingleFood = () => {
 
   console.log(testRequest);
 
+  const handleStatus = id => {
+    console.log(id);
+
+    // updating from food collection 
+    axios.patch(`/get-food/${id}`, { foodStatus: 'delivered' })
+      .then(res => {
+        console.log(res.data);
+        if (res?.data?.modifiedCount > 0) {
+          console.log('modified');
+        }
+      })
+    
+    // updating from request collection 
+
+    // axios.patch(`manage/:id`, { foodStatus: 'delivered' })
+    // .then(res => {
+    //   console.log(res.data);
+    //   if (res?.data?.modifiedCount > 0) {
+    //     console.log('modified');
+    //   }
+    // })
+
+    
+  }
+
+  if (foodStatus === 'delivered') {
+    return <p>This food has been delivered</p>;
+  }
+
   if (!requesterEmail) {
     return <p>Still No Request For this food</p>;
   }
+ 
 
   return (
     <div>
@@ -87,8 +117,11 @@ const ManageSingleFood = () => {
           <p>requesterEmail:..................{requesterEmail}</p>
           <p>requestDate:...................{requestDate}</p>
           <div className="card-actions justify-end">
-          <p>foodStatus:...............{foodStatus}</p>
-            <button className="btn btn-primary">Delivered</button>
+          {/* <p>foodStatus:...............{foodStatus}</p> */}
+            {
+              foodStatus === 'available' ?
+              <button onClick={()=>handleStatus(id)} className="btn btn-primary">Delivered</button> : <p>Food has  been delivered</p>
+            }
           </div>
         </div>
       </div>

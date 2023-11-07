@@ -150,7 +150,7 @@ const EditMyFoods = () => {
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 >
                   <option value={"available"}>Available</option>
-                  <option value={"unavailable"}>Unavailable</option>
+                  <option value={"delivered"}>Delivered</option>
                 </select>
               </div>
 

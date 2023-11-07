@@ -16,8 +16,6 @@ const FeaturedFood = () => {
     },
   });
 
-  
-
 
 
   if (isLoading) {
@@ -27,13 +25,23 @@ const FeaturedFood = () => {
     console.log(error);
     return <p>{error}</p>;
   }
+
+
+ 
+
+
   const sortedFood = data.data.sort((a, b) => b.foodQuantity - a.foodQuantity);
   const slicedFood = sortedFood.slice(0, 6);
   console.log(sortedFood);
 
+
+   const canRequestFood = sortedFood.filter(item => item.foodStatus === 'available')
+
+  console.log(canRequestFood);
+  
   return (
     <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto">
-      {slicedFood.map((food) => (
+      {canRequestFood.map((food) => (
         <FeaturedFoodCard key={food._id} food={food}></FeaturedFoodCard>
       ))}
 <Link to={'/available-foods'}><button className="btn btn-active btn-accent">View All</button></Link>

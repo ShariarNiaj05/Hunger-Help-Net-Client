@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000", //http://localhost:5000
+  baseURL: "https://hunger-help-net-server.vercel.app", //https://hunger-help-net-server.vercel.app
   withCredentials: true,
 });
 

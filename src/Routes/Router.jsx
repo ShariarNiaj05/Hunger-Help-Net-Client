@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/food-details/:id",
         element: <PrivateRoute><FeaturedFoodDetails></FeaturedFoodDetails></PrivateRoute>,
-        loader: ({params})=> fetch(`http://localhost:5000/foods/${params.id}`)
+        loader: ({params})=> fetch(`https://hunger-help-net-server.vercel.app/foods/${params.id}`)
       },
       {
         path: "/available-foods",
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             <EditMyFoods></EditMyFoods>
           </PrivateRoute>
         ),
-        loader: ({params})=>fetch(`http://localhost:5000/manage-single-food/${params.id}`)
+        loader: ({params})=>fetch(`https://hunger-help-net-server.vercel.app/manage-single-food/${params.id}`)
       },
       {
         path: "/manage/:id",
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
             <ManageSingleFood></ManageSingleFood>
           </PrivateRoute>
         ),
-        loader: ({params})=>fetch(`http://localhost:5000/get-food/${params.id}`)
+        loader: ({params})=>fetch(`https://hunger-help-net-server.vercel.app/get-food/${params.id}`)
       },
       {
         path: "/my-food-request",

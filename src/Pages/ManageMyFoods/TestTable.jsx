@@ -59,7 +59,7 @@ const TestTable = ({ testTableData, refetch }) => {
       if (result.isConfirmed) {
 
 
-        axios.delete(`http://localhost:5000/delete-food/${_id}`)
+        axios.delete(`https://hunger-help-net-server.vercel.app/delete-food/${_id}`)
           .then(res => {
             // console.log(res);
             if (res?.data?.deletedCount > 0) {
@@ -73,7 +73,7 @@ const TestTable = ({ testTableData, refetch }) => {
                   }
         })
         
-        // fetch(`http://localhost:5000/delete-food/${_id}`, {
+        // fetch(`https://hunger-help-net-server.vercel.app/delete-food/${_id}`, {
         //   method: "DELETE",
         // })
         //   .then((res) => res.json())

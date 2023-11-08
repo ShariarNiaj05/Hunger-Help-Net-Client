@@ -70,7 +70,7 @@ const FeaturedFoodDetails = () => {
 
     // console.log(newRequest);
 
-    fetch(`http://localhost:5000/request-food`, {
+    fetch(`https://hunger-help-net-server.vercel.app/request-food`, {
       method: "POST",
       headers: {
         'Content-type' : 'application/json'

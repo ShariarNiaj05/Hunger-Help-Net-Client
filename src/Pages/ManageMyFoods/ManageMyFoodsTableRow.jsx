@@ -30,7 +30,7 @@ const ManageMyFoodsTableRow = ({ food, refetch }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/delete-food/${_id}`).then((res) => {
+        axios.delete(`https://hunger-help-net-server.vercel.app/delete-food/${_id}`).then((res) => {
           // console.log(res);
           if (res?.data?.deletedCount > 0) {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -43,7 +43,7 @@ const ManageMyFoodsTableRow = ({ food, refetch }) => {
           }
         });
 
-        // fetch(`http://localhost:5000/delete-food/${_id}`, {
+        // fetch(`https://hunger-help-net-server.vercel.app/delete-food/${_id}`, {
         //   method: "DELETE",
         // })
         //   .then((res) => res.json())

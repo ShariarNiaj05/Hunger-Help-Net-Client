@@ -11,7 +11,7 @@ const ManageSingleFood = () => {
   const axios = useAxiosSecure();
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/manage?foodId=${id}`)
+  //   fetch(`https://hunger-help-net-server.vercel.app/manage?foodId=${id}`)
   //     .then((res) => {
   //       res.json();
   //       console.log(res);

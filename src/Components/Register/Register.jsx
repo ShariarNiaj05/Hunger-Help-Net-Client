@@ -65,8 +65,7 @@ const Register = () => {
               We invest in the world’s potential
             </h1>
             <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-              Here at Flowbite we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+            Hello and welcome to Hunger Help Net! We're excited to have you join our community and become a part of our mission 
             </p>
             <a
               href="#"

@@ -52,8 +52,7 @@ const Login = () => {
               We invest in the world’s potential
             </h1>
             <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-              Here at Flowbite we focus on markets where technology, innovation,
-              and capital can unlock long-term value and drive economic growth.
+            Thank you for being a part of our community, and for your dedication to making a positive change in the fight against hunger and food waste. We look forward to having you on board!
             </p>
             <a
               href="#"

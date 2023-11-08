@@ -4,6 +4,15 @@ import useAuth from "../../Hooks/useAuth";
 import Loading from "../../Shared/Loading/Loading";
 import ManageMyFoodsTableRow from "./ManageMyFoodsTableRow";
 import TestTable from "./TestTable";
+import {
+  flexRender,
+  useReactTable,
+  getCoreRowModel,
+} from "@tanstack/react-table";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 // import ManageMyFoodsTable from "./ManageMyFoodsTable";
 // import React, { useMemo } from "react";
@@ -15,23 +24,33 @@ import TestTable from "./TestTable";
 // } from "@tanstack/react-table";
 
 
-// const columns = [
-//     {
-//         Header: "Donor Name",
-//       accessorKey: "donatorName",
-//     },
-//     {
-//         Header: "Email",
-//       accessorKey: "email",
-//     },
-//     {
-//         Header: "Expiration Time",
-//       accessorKey: "expirationTime",
-//     },
-//   ];
+export const columnDef = [
+  {
+      accessorKey: '_id',
+      header: 'Header ID',
+  },
+  {
+      accessorKey: 'foodName',
+      header: 'Food Name',
+  },
+  {
+      accessorKey: 'foodQuantity',
+      header: 'Food Quantity',
+  },
+  {
+      accessorKey: 'expirationTime',
+      header: 'Expiration Time',
+  },
+  {
+      accessorKey: 'pickupLocation',
+      header: 'Pickup Location',
+  },
+  
+]
 
 const ManageMyFoods = () => {
   const axios = useAxiosSecure();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { data, isLoading, isError, error, isFetching, refetch } = useQuery({
     queryKey: ["manage-foods"],
@@ -40,6 +59,24 @@ const ManageMyFoods = () => {
       return myFood;
     },
   });
+
+
+  // -------------------table test ------------------------------
+
+  const finalColumnDef = React.useMemo(() => columnDef, []);
+  const testTableData = data?.data 
+  console.log(testTableData);
+
+  const tableInstance = useReactTable({
+    columns: finalColumnDef,
+    data: testTableData,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  // -------------------table test ------------------------------
+
+
+
   if (isLoading) {
     return <Loading></Loading>;
   }
@@ -64,7 +101,55 @@ const ManageMyFoods = () => {
 //     getCoreRowModel: getCoreRowModel(),
   //   });
   
-  const testTableData = data?.data 
+  
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `https://hunger-help-net-server.vercel.app/delete-food/${_id}`
+          )
+          .then((res) => {
+            // console.log(res);
+            if (res?.data?.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              console.log(_id);
+              refetch();
+              // const remainingProducts = cartProducts.filter(
+              //   (product) => product._id !== _id
+              // );
+              // setCartProducts(remainingProducts);
+            }
+          });
+
+        // fetch(`https://hunger-help-net-server.vercel.app/delete-food/${_id}`, {
+        //   method: "DELETE",
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     if (data.deletedCount > 0) {
+        //       Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        //       console.log(_id);
+        //       // const remainingProducts = cartProducts.filter(
+        //       //   (product) => product._id !== _id
+        //       // );
+        //       // setCartProducts(remainingProducts);
+        //     }
+        //   });
+      }
+    });
+  };
+  
+
+
 
   return (
     <div>
@@ -100,7 +185,7 @@ const ManageMyFoods = () => {
           <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          {/* <thead>
             <tr>
               <th>
                 <label>
@@ -112,23 +197,95 @@ const ManageMyFoods = () => {
               <th>Location</th>
               <th>Action</th>
             </tr>
-          </thead>
+          </thead> */}
           <tbody>
             {/* row 1 */}
             {
-             data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch} testTableData={testTableData}></ManageMyFoodsTableRow>) 
+            //  data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch} testTableData={testTableData}></ManageMyFoodsTableRow>) 
           }
           </tbody>
         </table>
 
-
+{/* ---------------------------------------------------------------------- */}
         <p> React table implementing</p>
+        
+
+        <table className=" table table-border table-striped table-zebra table-lg ">
+        <thead>
+          {tableInstance.getHeaderGroups().map((headerElement) => {
+            return (
+              
+              <tr key={headerElement.id}>
+                {headerElement.headers.map((columnElement) => {
+                  return (
+                    <th key={columnElement.id} colSpan={columnElement.colSpan}>
+                      {
+                        flexRender(
+                        columnElement.column.columnDef.header,
+                        columnElement.getContext()
+                      )}
+                    </th>
+                  );
+                }
+                
+                
+                )}
+                <th>Action Header</th>
+              </tr>
+            );
+          }
+          
+            
+            )}
+        </thead>
+        <tbody>
+          {tableInstance.getRowModel().rows.map((rowElement) => {
+            return (
+              <tr key={rowElement.id}>
+                {rowElement.getVisibleCells().map((cellElement) => {
+                  return (
+                    <td key={cellElement.id}>
+                      {flexRender(
+                        cellElement.column.columnDef.cell,
+                        cellElement.getContext()
+                      )}
+                    </td>
+                  );
+                }
+                
+                
+                
+                )}
+                <td>
+                  <th>
+                    <Link to={`/manage/${rowElement.original._id}`}>
+                      <button className="btn btn-ghost btn-xs">Manage</button>
+                    </Link>
+                    <button
+                      onClick={() => navigate(`/manage-my-foods/${rowElement.original._id}`)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(rowElement.original._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      Delete
+                    </button>
+                  </th>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
 
         {
           
 
           // data?.data.map(food => <TestTable key={food._id} food={food} refetch={refetch}></TestTable>)
-          // <TestTable testTableData={testTableData} refetch={refetch}></TestTable>
+          // <TestTable testTableData={testTableData} refetch={refetch}>          </TestTable>
         
         
         }

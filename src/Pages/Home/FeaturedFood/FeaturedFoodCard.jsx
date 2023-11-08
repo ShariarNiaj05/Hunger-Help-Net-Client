@@ -20,12 +20,12 @@ const FeaturedFoodCard = ({ food }) => {
       <div className="card-body">
         <h2 className="card-title">
           {foodName}
-          <div className="badge badge-secondary">{foodQuantity}</div>
+          <div className="badge badge-secondary">Food Quantity: {foodQuantity}</div>
         </h2>
         <p>{additionalNotes}</p>
         <div className="card-actions justify-end">
-          <div className="badge badge-outline">{pickupLocation}</div>
-          <div className="badge badge-outline">{expirationTime}</div>
+          <div className="badge badge-outline">Location: {pickupLocation}</div>
+          <div className="badge badge-outline">Expiration Time: {expirationTime}</div>
         </div>
         <div>
           <div className="avatar">

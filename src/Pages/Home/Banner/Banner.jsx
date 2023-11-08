@@ -8,13 +8,16 @@ const Banner = () => {
                 banner motion
             </motion.h2> */}
 
-      <div className=" flex flex-col md:flex-row ">
-        <motion.div
-          animate={{  y: 10 }}
-          className=" flex-1 text-center"
-        >
-                  <h2 className=" text-6xl text-blue-600">Join the Fight Against Hunger</h2>
-                  <p className=" text-2xl">Our mission is to foster a sense of <br /> community and sustainability by sharing food resources. Join us in making a <br /> positive impact on the lives of others.</p>
+      <div className=" flex flex-col lg:flex-row ">
+        <motion.div animate={{ y: 10 }} className=" flex-1 text-center">
+          <h2 className=" text-6xl text-blue-600">
+            Join the Fight Against Hunger
+          </h2>
+          <p className=" text-2xl">
+            Our mission is to foster a sense of <br /> community and
+            sustainability by sharing food resources. Join us in making a <br />{" "}
+            positive impact on the lives of others.
+          </p>
         </motion.div>
         <div className=" flex-1 ">
           <Lottie animationData={bannerFood1} loop={true}></Lottie>

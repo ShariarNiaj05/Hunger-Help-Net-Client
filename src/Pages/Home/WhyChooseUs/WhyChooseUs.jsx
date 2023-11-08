@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 const WhyChooseUs = () => {
   return (
-      <div className=" max-w-6xl mx-auto">
+      <div className=" max-w-6xl mx-auto ">
           <h2 className=" text-6xl font-bold text-blue-600 text-center my-10">Why Choose Us</h2>
-          <div className=" max-w-6xl mx-auto grid grid-cols-2 gap-10 ">
+          <div className=" max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
               <motion.div
                   initial={{ scale: 0.5 }}
                   animate={{ scale: 1 }}

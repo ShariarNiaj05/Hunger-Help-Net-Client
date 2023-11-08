@@ -114,6 +114,7 @@ const AddFood = () => {
                                   type="number"
                                   name="foodQuantity"
                   placeholder="Food Quantity  (No. of person to be served)"
+                  required
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>
@@ -137,7 +138,8 @@ const AddFood = () => {
                   id="expirationTime"
                   type="number"
                                   placeholder="Expiration Time"
-                                  name="expirationTime"
+                  name="expirationTime"
+                  required
                   className="w-full rounded-md focus:ring focus:ri focus:ri dark:border-gray-700 dark:text-gray-900"
                 />
               </div>

@@ -75,10 +75,10 @@ const canRequestFood = sortedFoods.filter((item) => item.foodStatus === "availab
 
   const handleSearch = e => {
     e.preventDefault()
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     // ----------------
-    // Updating the searchField state with the input value
+    
     setSearchField(e.target.value);
     // -----------------------
   }
@@ -86,7 +86,7 @@ const canRequestFood = sortedFoods.filter((item) => item.foodStatus === "availab
 
   const handleSortChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSortOrder(e.target.value);
   };
 
@@ -94,7 +94,7 @@ const canRequestFood = sortedFoods.filter((item) => item.foodStatus === "availab
     <div>
       {/* filtering area  */}
 
-      <div className=" max-w-4xl mx-auto flex gap-10">
+      <div className=" max-w-4xl mx-auto flex gap-10 items-center justify-center">
         <div  className="card-body w-1/2">
           <div className="form-control">
             <label className="label">
@@ -108,11 +108,11 @@ const canRequestFood = sortedFoods.filter((item) => item.foodStatus === "availab
               onChange={handleSearch}
             />
           </div>
-          <div className="form-control mt-6">
+          {/* <div className="form-control mt-6">
             <button type="submit" className="btn btn-primary">
               Search
             </button>
-          </div>
+          </div> */}
         </div>
 
         <select onChange={handleSortChange} className="select select-ghost w-full max-w-xs mt-6 input input-bordered">

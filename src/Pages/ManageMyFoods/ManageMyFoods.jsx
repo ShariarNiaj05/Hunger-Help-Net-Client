@@ -107,10 +107,10 @@ const ManageMyFoods = () => {
                   <input type="checkbox" className="checkbox" />
                 </label>
               </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
-              <th></th>
+              <th>Food Name</th>
+              <th>Expiration Time & Quantity</th>
+              <th>Location</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -122,7 +122,7 @@ const ManageMyFoods = () => {
         </table>
 
 
-        <p>demo table implementing</p>
+        <p> React table implementing</p>
 
         {
           

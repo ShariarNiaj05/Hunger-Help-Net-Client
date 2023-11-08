@@ -88,7 +88,7 @@ const ManageSingleFood = () => {
   return (
     <div>
       {/* id: {singleFood._id} */}
-      <p>email:{email}</p>
+      {/* <p>email:{email}</p>
       <p>foodName:{foodName}</p>
       <p>foodImage:{foodImage}</p>
       <p>foodId:{foodId}</p>
@@ -104,27 +104,55 @@ const ManageSingleFood = () => {
       <p>foodStatus:...............{foodStatus}</p>
       <p>requesterEmail:..................{requesterEmail}</p>
       <p>Requester Name:......................{requesterName}</p>
-      <p>Requester Image:......................{requesterImage}</p>
+      <p>Requester Image:......................{requesterImage}</p> */}
 
       <div className="card w-2/3 bg-base-100 shadow-xl max-w-5xl mx-auto">
-        <figure>
+
+
+
+      <div className="hero ">
+  <div className="hero-content flex-col lg:flex-row">
+    <img src={requesterImage} className="max-w-sm rounded-lg shadow-2xl" />
+    <div>
+      <h2 >Requester Name: <span className="text-2xl font-bold">{requesterName}</span></h2>
+      <p className="py-6">Requester Email: {requesterEmail}</p>
+      <p className="py-6">Request Date: {requestDate}</p>
+      {
+              foodStatus !== 'delivered' ?
+              <button onClick={()=>handleStatus(id)} className="btn btn-primary">Confirm Deliver</button> : <button className="btn btn-primary">Food has  been delivered</button>
+            }
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+        {/* <figure>
           <img
             src={requesterImage}
             alt="Shoes"
           />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Requester Name: {requesterName}</h2>
+        </figure> */}
+        {/* <div className="card-body"> */}
+          {/* <h2 className="card-title">Requester Name: {requesterName}</h2>
           <p>requesterEmail:..................{requesterEmail}</p>
           <p>requestDate:...................{requestDate}</p>
-          <div className="card-actions justify-end">
+          <div className="card-actions justify-end"> */}
           {/* <p>foodStatus:...............{foodStatus}</p> */}
-            {
+            {/* {
               foodStatus !== 'delivered' ?
-              <button onClick={()=>handleStatus(id)} className="btn btn-primary">Delivered</button> : <button className="btn btn-primary">Food has  been delivered</button>
-            }
-          </div>
-        </div>
+              <button onClick={()=>handleStatus(id)} className="btn btn-primary">Confirm Deliver</button> : <button className="btn btn-primary">Food has  been delivered</button>
+            } */}
+          {/* </div> */}
+        {/* </div> */}
+
+        
       </div>
     </div>
   );

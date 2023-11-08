@@ -3,31 +3,29 @@ import Navbar from "../Shared/Navbar/Navbar";
 import Footer from "../Shared/Footer/Footer";
 import { useEffect } from "react";
 
-
-
 const MainLayout = () => {
-
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     // console.log(location.pathname);
-    if (location.pathname === '/'){
-      document.title = 'Hunger Help Net | Home'
-    }
-    else {
-      document.title = `Hunger Help Net ${ location.pathname.replace('/', ' |')}`
+    if (location.pathname === "/") {
+      document.title = "Hunger Help Net | Home";
+    } else {
+      document.title = `Hunger Help Net ${location.pathname.replace(
+        "/",
+        " |"
+      )}`;
     }
     if (location.state) {
-      document.title = `Hunger Help Net | ${location.state}`
+      document.title = `Hunger Help Net | ${location.state}`;
     }
-  
-}, [location])
-  
+  }, [location]);
+
   return (
     <div>
       <Navbar></Navbar>
-      <div className="">
-        <Outlet></Outlet>
-      </div>
+
+      <Outlet></Outlet>
+
       <Footer></Footer>
     </div>
   );

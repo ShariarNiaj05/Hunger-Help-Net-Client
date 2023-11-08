@@ -94,8 +94,8 @@ const FeaturedFoodDetails = () => {
   return (
     <div className=" max-w-5xl mx-auto gap-10 flex flex-col">
       <div>
-        <h2 className="card-title">{donatorName}</h2>
-        <h2 className="card-title">{pickupLocation}</h2>
+        <h2 className="card-title">Donar Name: {donatorName}</h2>
+        <h2 className="card-title">Pickup Location: {pickupLocation}</h2>
       </div>
       <div>
         <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -103,12 +103,12 @@ const FeaturedFoodDetails = () => {
             <img src={foodImage} alt="Album" />
           </figure>
           <div className="card-body">
-            <h2 className="card-title">{foodName}</h2>
-            <p>{foodQuantity}</p>
-            <p>{expirationTime}</p>
+            <h2 className="card-title">Food Name: {foodName}</h2>
+            <p>Food Quantity: {foodQuantity}</p>
+            <p>Expired Time: {expirationTime}</p>
             <div className="card-actions justify-end">
               <button
-                className="btn"
+                className="btn btn-primary"
                 onClick={() =>
                   document.getElementById("my_modal_1").showModal()
                 }

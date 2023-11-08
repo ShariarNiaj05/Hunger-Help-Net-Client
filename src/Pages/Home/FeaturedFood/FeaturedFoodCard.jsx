@@ -15,16 +15,16 @@ const FeaturedFoodCard = ({ food }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl mx-auto">
       <figure>
-        <img src={foodImage} alt="Shoes" />
+        <img className=" max-h-48 w-full object-cover" src={foodImage} alt={foodName} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">
           {foodName}
-          <div className="badge badge-secondary">Food Quantity: {foodQuantity}</div>
         </h2>
-        <p>{additionalNotes}</p>
+          <div className="badge badge-secondary">Food Quantity: {foodQuantity}</div>
+        <p>Notes: {additionalNotes}</p>
         <div className="card-actions justify-end">
-          <div className="badge badge-outline">Location: {pickupLocation}</div>
+          <div className=" "><span className=" text-blue-600">Location</span>: {pickupLocation}</div>
           <div className="badge badge-outline">Expiration Time: {expirationTime}</div>
         </div>
         <div>

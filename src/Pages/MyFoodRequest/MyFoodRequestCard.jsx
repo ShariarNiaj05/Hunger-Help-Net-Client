@@ -55,7 +55,7 @@ const MyFoodRequestCard = ({
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
-        <img src={mySingleFood.foodImage} alt="Shoes" />
+        <img className=" max-h-48 w-full object-cover" src={mySingleFood.foodImage} alt="" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">Donar Name: {donatorName}</h2>

@@ -100,7 +100,7 @@ const FeaturedFoodDetails = () => {
       <div>
         <div className="card lg:card-side bg-base-100 shadow-xl">
           <figure>
-            <img src={foodImage} alt="Album" />
+            <img className=" max-h-64" src={foodImage} alt={foodName} />
           </figure>
           <div className="card-body">
             <h2 className="card-title">Food Name: {foodName}</h2>

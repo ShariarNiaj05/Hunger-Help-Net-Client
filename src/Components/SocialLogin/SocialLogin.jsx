@@ -56,7 +56,7 @@ const SocialLogin = () => {
           strokeWidth="2"
           stroke="currentColor"
           aria-hidden="true"
-          class="h-5 w-5"
+          className="h-5 w-5"
         >
           <path
             strokeLinecap="round"

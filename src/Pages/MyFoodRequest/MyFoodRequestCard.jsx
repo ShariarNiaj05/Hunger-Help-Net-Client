@@ -53,17 +53,17 @@ const MyFoodRequestCard = ({
     });
   };
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl relative">
       <figure>
         <img className=" max-h-48 w-full object-cover" src={mySingleFood.foodImage} alt="" />
       </figure>
-      <div className="card-body">
+      <div className="card-body ">
         <h2 className="card-title">Donar Name: {donatorName}</h2>
         <p>Pickup Location: {pickupLocation}</p>
         <p>Expire Date: {expirationTime}</p>
         <p>Request Date: {requestDate}</p>
         <p>Donation Amount: {donationAmount}</p>
-        <p>Status: {foodStatus} </p>
+        <p className=" absolute bg-black text-white top-0 right-0 px-2 rounded">Status: {foodStatus} </p>
 
         <div className="card-actions justify-end">
           {foodStatus === "available" && (

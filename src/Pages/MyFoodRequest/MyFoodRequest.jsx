@@ -16,7 +16,10 @@ const MyFoodRequest = () => {
   }, [axios, user?.email]);
   return (
     <div>
-      Total Requested Food : {myFoodRequest.length}
+     
+      <div className=" bg-blue-600 p-5 mb-6 text-white text-lg font-bold max-w-[40%] mx-auto">
+        <marquee  direction="left"> Total {myFoodRequest.length} Food Requested </marquee>
+      </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {myFoodRequest.map((mySingleFood) => (
           <MyFoodRequestCard

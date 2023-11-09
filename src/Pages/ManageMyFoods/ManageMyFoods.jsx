@@ -13,40 +13,41 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 // import ManageMyFoodsTable from "./ManageMyFoodsTable";
 // import React, { useMemo } from "react";
 // import {
-    
+
 //   useReactTable,
 //   getCoreRowModel,
 //   flexRender,
 // } from "@tanstack/react-table";
 
-
 export const columnDef = [
   {
-      accessorKey: '_id',
-      header: 'Header ID',
+    accessorKey: "_id",
+    header: "Food ID",
+  },
+  // {
+  //   accessorKey: "foodImage",
+  //   header: "image",
+  // },
+  {
+    accessorKey: "foodName",
+    header: "Food Name",
   },
   {
-      accessorKey: 'foodName',
-      header: 'Food Name',
+    accessorKey: "foodQuantity",
+    header: "Food Quantity",
   },
   {
-      accessorKey: 'foodQuantity',
-      header: 'Food Quantity',
+    accessorKey: "expirationTime",
+    header: "Expiration Time",
   },
   {
-      accessorKey: 'expirationTime',
-      header: 'Expiration Time',
+    accessorKey: "pickupLocation",
+    header: "Pickup Location",
   },
-  {
-      accessorKey: 'pickupLocation',
-      header: 'Pickup Location',
-  },
-  
-]
+];
 
 const ManageMyFoods = () => {
   const axios = useAxiosSecure();
@@ -60,11 +61,10 @@ const ManageMyFoods = () => {
     },
   });
 
-
   // -------------------table test ------------------------------
 
   const finalColumnDef = React.useMemo(() => columnDef, []);
-  const testTableData = data?.data 
+  const testTableData = data?.data;
   console.log(testTableData);
 
   const tableInstance = useReactTable({
@@ -74,8 +74,6 @@ const ManageMyFoods = () => {
   });
 
   // -------------------table test ------------------------------
-
-
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -90,18 +88,15 @@ const ManageMyFoods = () => {
   }
   // console.log(myFood);
 
-//   const food = data.data;
-//   const tableData = useMemo(() => food, [food]);
+  //   const food = data.data;
+  //   const tableData = useMemo(() => food, [food]);
 
-  
-
-//   const table = useReactTable({
-//     tableData,
-//     columns,
-//     getCoreRowModel: getCoreRowModel(),
+  //   const table = useReactTable({
+  //     tableData,
+  //     columns,
+  //     getCoreRowModel: getCoreRowModel(),
   //   });
-  
-  
+
   const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -147,13 +142,10 @@ const ManageMyFoods = () => {
       }
     });
   };
-  
-
-
 
   return (
     <div>
-    {/*   <table>
+      {/*   <table>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
@@ -180,9 +172,8 @@ const ManageMyFoods = () => {
           ))}
         </tbody>
       </table> */}
-          
 
-          <div className="overflow-x-auto">
+      <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           {/* <thead>
@@ -201,99 +192,90 @@ const ManageMyFoods = () => {
           <tbody>
             {/* row 1 */}
             {
-            //  data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch} testTableData={testTableData}></ManageMyFoodsTableRow>) 
-          }
+              //  data?.data.map(food => <ManageMyFoodsTableRow key={food._id} food={food} refetch={refetch} testTableData={testTableData}></ManageMyFoodsTableRow>)
+            }
           </tbody>
         </table>
 
-{/* ---------------------------------------------------------------------- */}
-        <p> React table implementing</p>
-        
+        {/* ---------------------------------------------------------------------- */}
+        <div className=" bg-blue-600 p-5 mb-6 text-white text-lg font-bold max-w-[40%] mx-auto rounded-lg">
+          <marquee direction="left">
+            {" "}
+            Total {testTableData.length} Food Found{" "}
+          </marquee>
+        </div>
 
         <table className=" table table-border table-striped table-zebra table-lg ">
-        <thead>
-          {tableInstance.getHeaderGroups().map((headerElement) => {
-            return (
-              
-              <tr key={headerElement.id}>
-                {headerElement.headers.map((columnElement) => {
-                  return (
-                    <th key={columnElement.id} colSpan={columnElement.colSpan}>
-                      {
-                        flexRender(
-                        columnElement.column.columnDef.header,
-                        columnElement.getContext()
-                      )}
+          <thead>
+            {tableInstance.getHeaderGroups().map((headerElement) => {
+              return (
+                <tr key={headerElement.id}>
+                  {headerElement.headers.map((columnElement) => {
+                    return (
+                      <th
+                        key={columnElement.id}
+                        colSpan={columnElement.colSpan}
+                      >
+                        {flexRender(
+                          columnElement.column.columnDef.header,
+                          columnElement.getContext()
+                        )}
+                      </th>
+                    );
+                  })}
+                  <th>Actions</th>
+                </tr>
+              );
+            })}
+          </thead>
+          <tbody>
+            {tableInstance.getRowModel().rows.map((rowElement) => {
+              return (
+                <tr key={rowElement.id}>
+                  {rowElement.getVisibleCells().map((cellElement) => {
+                    return (
+                      <td key={cellElement.id}>
+                        {flexRender(
+                          cellElement.column.columnDef.cell,
+                          cellElement.getContext()
+                        )}
+                      </td>
+                    );
+                  })}
+                  <td>
+                    <th>
+                      <Link to={`/manage/${rowElement.original._id}`}>
+                        <button className="btn btn-ghost btn-xs">Manage</button>
+                      </Link>
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/manage-my-foods/${rowElement.original._id}`
+                          )
+                        }
+                        className="btn btn-ghost btn-xs"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(rowElement.original._id)}
+                        className="btn btn-ghost btn-xs"
+                      >
+                        Delete
+                      </button>
                     </th>
-                  );
-                }
-                
-                
-                )}
-                <th>Action Header</th>
-              </tr>
-            );
-          }
-          
-            
-            )}
-        </thead>
-        <tbody>
-          {tableInstance.getRowModel().rows.map((rowElement) => {
-            return (
-              <tr key={rowElement.id}>
-                {rowElement.getVisibleCells().map((cellElement) => {
-                  return (
-                    <td key={cellElement.id}>
-                      {flexRender(
-                        cellElement.column.columnDef.cell,
-                        cellElement.getContext()
-                      )}
-                    </td>
-                  );
-                }
-                
-                
-                
-                )}
-                <td>
-                  <th>
-                    <Link to={`/manage/${rowElement.original._id}`}>
-                      <button className="btn btn-ghost btn-xs">Manage</button>
-                    </Link>
-                    <button
-                      onClick={() => navigate(`/manage-my-foods/${rowElement.original._id}`)}
-                      className="btn btn-ghost btn-xs"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(rowElement.original._id)}
-                      className="btn btn-ghost btn-xs"
-                    >
-                      Delete
-                    </button>
-                  </th>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
         {
-          
-
           // data?.data.map(food => <TestTable key={food._id} food={food} refetch={refetch}></TestTable>)
           // <TestTable testTableData={testTableData} refetch={refetch}>          </TestTable>
-        
-        
         }
-
-       
       </div>
-
-          
     </div>
   );
 };

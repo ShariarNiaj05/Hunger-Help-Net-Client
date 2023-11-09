@@ -13,7 +13,7 @@ const FeaturedFoodCard = ({ food }) => {
     additionalNotes,
   } = food;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+    <div className="card w-96 bg-base-100 shadow-xl mx-auto relative">
       <figure>
         <img className=" max-h-48 w-full object-cover" src={foodImage} alt={foodName} />
       </figure>
@@ -21,7 +21,7 @@ const FeaturedFoodCard = ({ food }) => {
         <h2 className="card-title">
           {foodName}
         </h2>
-          <div className="badge badge-secondary">Food Quantity: {foodQuantity}</div>
+          <div className="badge badge-secondary absolute top-1 right-1">Food Quantity: {foodQuantity}</div>
         <p>Notes: {additionalNotes}</p>
         <div className="card-actions justify-end">
           <div className=" "><span className=" text-blue-600">Location</span>: {pickupLocation}</div>
@@ -34,7 +34,7 @@ const FeaturedFoodCard = ({ food }) => {
             </div>
             <button className="btn">{donatorName}</button>
           </div>
-          <Link to={`/food-details/${_id}`}><button className="btn btn-active btn-primary">View Details</button></Link>
+          <Link to={`/food-details/${_id}`}><button className="btn btn-active btn-primary ">View Details</button></Link>
         </div>
           </div>
           

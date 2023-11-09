@@ -13,7 +13,7 @@ const AvailableFoodsCard = ({ singleFood, refetch }) => {
     additionalNotes,
   } = singleFood || {};
   return (
-    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+    <div className="card w-96 bg-base-100 shadow-xl mx-auto relative">
       <figure>
         <img
           className=" max-h-48 w-full object-cover"
@@ -23,7 +23,7 @@ const AvailableFoodsCard = ({ singleFood, refetch }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">Name: {foodName}</h2>
-        <div className="badge badge-secondary">
+        <div className="badge badge-secondary badge-outline">
           Food Quantity: {foodQuantity}
         </div>
         <p>Notes: {additionalNotes}</p>
@@ -31,7 +31,7 @@ const AvailableFoodsCard = ({ singleFood, refetch }) => {
           <div className=" ">
             <span className=" text-blue-600">Location</span>: {pickupLocation}
           </div>
-          <div className="badge badge-outline">
+          <div className="badge badge-secondary absolute top-1 right-1">
             Expiration Time: {expirationTime}
           </div>
         </div>

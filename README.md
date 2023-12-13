@@ -2,8 +2,7 @@
 
 Explore Our Community Food Sharing Platform - [https://hunger-help-net.firebaseapp.com]
 
-**Technologies:** React, React Router Dom, Firebase, MongoDB, Tailwind, Express, Node
-
+**Technologies:** React, React Router, Firebase, MongoDB, Tailwind, Express js, Node js, Tanstack/ React Query, Tanstack/ React Table, Aaxios, Framer Motion, Lottie React, React Icons, sweetalert2
 
 ## Here are some project features and functionalities
 
